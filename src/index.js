@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import reducers from './redux/reducers';
+import reportWebVitals from './reportWebVitals';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
