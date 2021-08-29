@@ -4,6 +4,7 @@ import memory from '../../assets/images/memories.png';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import jwtDecode from 'jwt-decode';
 // import { GoogleLogout } from 'react-google-login';
 
 const Navbar = () => {
@@ -14,6 +15,16 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
+    const token = user?.token;
+
+    if (token) {
+      const decodedToken = jwtDecode(token);
+
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
+    }
+
     setUser(JSON.parse(localStorage.getItem('profile')));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
@@ -90,3 +101,9 @@ export default Navbar;
 
 // dependency location
 // when location is change, set users
+
+// setelah token di decode, akan keliahatan semua informasinya
+// pada saat buat api, kita memasukkan email dan password
+/*
+{email: "gian@gmail.com", id: "612b945438ce74b0dec7f4c3", iat: 1630252124, exp: 1630255724}
+*/
