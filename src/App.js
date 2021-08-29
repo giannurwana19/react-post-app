@@ -21,7 +21,7 @@ function App() {
     <Container maxWidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography className={classes.heading} variant="h4" align="center">
-          Post Memory App
+          Post Memory
         </Typography>
         <img
           className={classes.image}
@@ -32,6 +32,7 @@ function App() {
       </AppBar>
       <Container>
         <Grid
+          className={classes.mainContainer}
           container
           justifyContent="space-between"
           alignContent="stretch"
