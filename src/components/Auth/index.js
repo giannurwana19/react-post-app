@@ -14,6 +14,7 @@ import GoogleLogin from 'react-google-login';
 import Icon from '../Icon';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { signin, signup } from '../../redux/actions/auth';
 
 const initialState = {
   firstName: '',
@@ -33,11 +34,18 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
 
-  const handleChange = e =>
+  const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = e => {
-    //
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(form, history));
+    } else {
+      dispatch(signin(form, history));
+    }
   };
 
   const switchMode = () => {
