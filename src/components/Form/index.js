@@ -8,8 +8,9 @@ import { useEffect } from 'react';
 
 const Form = ({ currentId, setCurrentId }) => {
   const post = useSelector(state =>
-    currentId ? state.posts.find(post => post._id === currentId) : null
+    currentId ? state.posts.posts.find(post => post._id === currentId) : null
   );
+
   const classes = useStyles();
   const [postData, setPostData] = useState({
     creator: '',
