@@ -7,9 +7,8 @@ import {
   TextField,
 } from '@material-ui/core';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getPosts, getPostsBySearch } from '../../redux/actions/posts';
+import { getPostsBySearch } from '../../redux/actions/posts';
 import useStyles from './styles';
 import Form from '../../components/Form';
 import Posts from '../../components/Posts';
@@ -101,9 +100,11 @@ const Home = () => {
             </Button>
           </AppBar>
           <Form currentId={currentId} setCurrentId={setCurrentId} />
-          <Paper className={classes.pagination} elevation={6}>
-            <Paginate page={page} />
-          </Paper>
+          {!searchQuery && !tags.length && (
+            <Paper className={classes.pagination} elevation={6}>
+              <Paginate page={page} />
+            </Paper>
+          )}
         </Grid>
       </Grid>
     </Container>

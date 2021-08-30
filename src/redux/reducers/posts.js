@@ -1,13 +1,19 @@
 import {
   CREATE,
   DELETE,
+  END_LOADING,
   FETCH_ALL,
   FETCH_BY_SEARCH,
+  START_LOADING,
   UPDATE,
 } from '../constants/actionTypes';
 
-const reducer = (state = [], action) => {
+const reducer = (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
+    case START_LOADING:
+      return { ...state, isLoading: true };
+    case END_LOADING:
+      return { ...state, isLoading: false };
     case FETCH_ALL:
       return {
         ...state,
@@ -21,7 +27,10 @@ const reducer = (state = [], action) => {
         posts: action.payload,
       };
     case CREATE:
-      return { ...state, posts: [...state.posts, action.payload] };
+      return {
+        ...state,
+        posts: [...state.posts, action.payload],
+      };
     case UPDATE:
       return {
         ...state,

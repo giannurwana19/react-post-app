@@ -2,9 +2,13 @@ const CREATE = 'CREATE';
 const UPDATE = 'UPDATE';
 const DELETE = 'DELETE';
 const FETCH_ALL = 'FETCH_ALL';
+const FETCH_BY_SEARCH = 'FETCH_BY_SEARCH';
+
 const AUTH = 'AUTH';
 const LOGOUT = 'LOGOUT';
-const FETCH_BY_SEARCH = 'FETCH_BY_SEARCH';
+
+const START_LOADING = 'START_LOADING';
+const END_LOADING = 'LOADING';
 
 module.exports = {
   CREATE,
@@ -14,4 +18,6 @@ module.exports = {
   FETCH_BY_SEARCH,
   AUTH,
   LOGOUT,
+  START_LOADING,
+  END_LOADING,
 };
