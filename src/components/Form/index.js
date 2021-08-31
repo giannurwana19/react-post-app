@@ -5,11 +5,13 @@ import Filebase64 from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../../redux/actions/posts';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Form = ({ currentId, setCurrentId }) => {
   const post = useSelector(state =>
     currentId ? state.posts.posts.find(post => post._id === currentId) : null
   );
+  const history = useHistory();
 
   const classes = useStyles();
   const [postData, setPostData] = useState({
@@ -34,7 +36,7 @@ const Form = ({ currentId, setCurrentId }) => {
         updatePost(currentId, { ...postData, name: user?.result?.name })
       );
     } else {
-      dispatch(createPost({ ...postData, name: user?.result?.name }));
+      dispatch(createPost({ ...postData, name: user?.result?.name }, history));
     }
 
     clear();
@@ -83,6 +85,8 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Message"
           fullWidth
+          multiline
+          rows={4}
           value={postData.message}
           onChange={e => setPostData({ ...postData, message: e.target.value })}
         />
