@@ -4,6 +4,7 @@ import {
   END_LOADING,
   FETCH_ALL,
   FETCH_BY_SEARCH,
+  FETCH_POST,
   START_LOADING,
   UPDATE,
 } from '../constants/actionTypes';
@@ -20,6 +21,11 @@ const reducer = (state = { isLoading: true, posts: [] }, action) => {
         posts: action.payload.data,
         currentPage: action.payload.currentPage,
         numberOfPages: action.payload.numberOfPages,
+      };
+    case FETCH_POST:
+      return {
+        ...state,
+        post: action.payload,
       };
     case FETCH_BY_SEARCH:
       return {

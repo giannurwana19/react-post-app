@@ -5,6 +5,7 @@ import {
   END_LOADING,
   FETCH_ALL,
   FETCH_BY_SEARCH,
+  FETCH_POST,
   START_LOADING,
   UPDATE,
 } from '../constants/actionTypes';
@@ -15,6 +16,18 @@ export const getPosts = page => async dispatch => {
     const { data } = await api.fetchPosts(page);
 
     dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: END_LOADING });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+export const getPost = id => async dispatch => {
+  try {
+    dispatch({ type: START_LOADING });
+    const { data } = await api.fetchPost(id);
+
+    dispatch({ type: FETCH_POST, payload: data });
     dispatch({ type: END_LOADING });
   } catch (err) {
     console.log(err.message);
@@ -41,6 +54,7 @@ export const createPost = post => async dispatch => {
     const { data } = await api.createPost(post);
 
     dispatch({ type: CREATE, payload: data });
+    dispatch({ type: END_LOADING });
   } catch (err) {
     console.log(err);
   }
@@ -51,6 +65,7 @@ export const updatePost = (id, post) => async dispatch => {
     const { data } = await api.updatePost(id, post);
 
     dispatch({ type: UPDATE, payload: data });
+    dispatch({ type: END_LOADING });
   } catch (err) {
     console.log(err);
   }
