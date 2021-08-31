@@ -11,6 +11,8 @@ const LOGOUT = 'LOGOUT';
 const START_LOADING = 'START_LOADING';
 const END_LOADING = 'LOADING';
 
+const COMMENT = 'COMMENT';
+
 module.exports = {
   CREATE,
   UPDATE,
@@ -22,4 +24,5 @@ module.exports = {
   LOGOUT,
   START_LOADING,
   END_LOADING,
+  COMMENT,
 };

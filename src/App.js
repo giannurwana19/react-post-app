@@ -19,14 +19,14 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={() => <Redirect to="/posts" />} />
-          <Route exact path="/posts" component={Home} />
-          <Route exact path="/posts/search" component={Home} />
-          <Route exact path="/posts/:id" component={PostDetail} />
           <Route
             exact
             path="/auth"
             component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}
           />
+          <Route exact path="/posts" component={Home} />
+          <Route exact path="/posts/search" component={Home} />
+          <Route exact path="/posts/:id" component={PostDetail} />
         </Switch>
       </Container>
     </Router>

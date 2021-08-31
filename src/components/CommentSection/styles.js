@@ -18,14 +18,13 @@ export default makeStyles(theme => ({
   section: {
     borderRadius: '20px',
     margin: '10px',
-    flex: 2,
+    flex: 1,
   },
   imageSection: {
     marginLeft: '20px',
     [theme.breakpoints.down('sm')]: {
       marginLeft: 0,
     },
-    flex: 1,
   },
   recommendedPosts: {
     display: 'flex',
